@@ -33,19 +33,19 @@ Now after the prediction an affordability index is formulated using all the para
 
 Process followed:
 
-• Importing of relevant modules
-• Setting paths for both the training and testing data
-• Storing both datasets in different dataframes
-• Renaming the columns for both train.csv and test.csv
-• Dropping the extra columns for train.csv
-• Replacing any string values with float or int values for both train.csv and test.csv
-• Set the independent and dependent columns in variables for train.csv
-• Splitting the dataset into training and testing datasets for train.csv with 30% data for testing
-• Creating a lasso model and checking for its performance
-• Next, we create a Random for regressor model and check for its performance too.
-• Now we can decide which model to choose from which in this case can be the RF regressor
-• Now in order to get the prices for the test.csv we have to define the independent columns in a separate variable and predicting the values
-• This result can be outputted in a new .csv file which can be used for further processing.
-• Now for the affordability index calculation we first take the mean of price and area since these columns are not normalized according to the independent variables.
-• Now we get the final affordability index for all the datasets and store it in different .csv files
-• The higher the affordability index the better the quality of living in the respective flat.
+	• Importing of relevant modules
+	• Setting paths for both the training and testing data
+	• Storing both datasets in different dataframes
+	• Renaming the columns for both train.csv and test.csv
+	• Dropping the extra columns for train.csv
+	• Replacing any string values with float or int values for both train.csv and test.csv
+	• Set the independent and dependent columns in variables for train.csv
+	• Splitting the dataset into training and testing datasets for train.csv with 30% data for testing
+	• Creating a lasso model and checking for its performance
+	• Next, we create a Random for regressor model and check for its performance too.
+	• Now we can decide which model to choose from which in this case can be the RF regressor
+	• Now in order to get the prices for the test.csv we have to define the independent columns in a separate variable and predicting the values
+	• This result can be outputted in a new .csv file which can be used for further processing.
+	• Now for the affordability index calculation we first take the mean of price and area since these columns are not normalized according to the independent variables.
+	• Now we get the final affordability index for all the datasets and store it in different .csv files
+	• The higher the affordability index the better the quality of living in the respective flat.
