@@ -1,0 +1,95 @@
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from sklearn import *
+from sklearn.metrics import r2_score
+from sklearn.ensemble import RandomForestRegressor
+
+path_train = r"F:\IIT KGP\II Semester\UI\Assignment 2\Home Prediction\train.csv"
+path_test = r"F:\IIT KGP\II Semester\UI\Assignment 2\Home Prediction\test.csv"
+
+df = pd.read_csv(path_train)
+dr = pd.read_csv(path_test)
+
+print(df.columns)
+df.columns = ["source",
+              "cons",
+              "rera",
+              "bhk_no",
+              "bhk_rk",
+              "area",
+              "move",
+              "resale",
+              "address",
+              "lon",
+              "lat",
+              "price"]
+
+dr.columns = ["source",
+              "cons",
+              "rera",
+              "bhk_no",
+              "bhk_rk",
+              "area",
+              "move",
+              "resale",
+              "address",
+              "lon",
+              "lat"]
+df.drop(df.columns[8:11], axis=1, inplace=True, errors="coerce")
+
+df = df.replace(to_replace={'BHK': 1, 'RK': 0})
+
+
+dr = df.replace(to_replace={'BHK': 1, 'RK': 0})
+
+scaler = MinMaxScaler()
+
+print(df.head(10))
+
+X = df[["cons",
+        "rera",
+        "bhk_no",
+        "bhk_rk",
+        "area",
+        "move",
+        "resale", ]]
+
+Y = df[["price"]]
+
+X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3)
+
+ls = linear_model.Lasso(alpha=0.1)
+ls.fit(X_train, y_train)
+y_predicted = ls.predict(X_test)
+print("LASSO MODEL:", r2_score(y_test, y_predicted))
+
+rf = RandomForestRegressor(random_state=42, n_jobs=-1, max_depth=5, n_estimators=100, oob_score=True)
+rf.fit(X_train, y_train)
+print("RANDOM FOREST REGRESSOR:", rf.oob_score_)
+
+Xt = dr[["cons",
+         "rera",
+         "bhk_no",
+         "bhk_rk",
+         "area",
+         "move",
+         "resale"]]
+
+dr["price"] = rf.predict(Xt)
+dr.to_csv(r"F:\IIT KGP\II Semester\UI\Assignment 2\Home Prediction\predicted.csv")
+
+p_mean=df["price"].mean()
+a_mean=df["area"].mean()
+print("MEAN OF PRICE: ",p_mean)
+print("MEAN OF AREA: ",a_mean)
+a=p_mean
+b=a_mean
+df["score"]=(-df["cons"])+(df["rera"])+(df["bhk_no"])+(df["bhk_rk"])+(df["area"]/b)+(-df["price"]/a)
+dr["score"]=(-dr["cons"])+(dr["rera"])+(dr["bhk_no"])+(dr["bhk_rk"])+(dr["area"]/b)+(-dr["price"]/a)
+
+df.to_csv(r"F:\IIT KGP\II Semester\UI\Assignment 2\Home Prediction\predicted_train.csv")
+dr.to_csv(r"F:\IIT KGP\II Semester\UI\Assignment 2\Home Prediction\predicted_test.csv")
+print(df.head(10))
+print(dr.head(10))
+
