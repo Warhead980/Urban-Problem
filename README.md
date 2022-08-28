@@ -16,6 +16,7 @@ The csv file has data regarding the flats. The columns are:
 	TARGET(PRICE_IN_LACS)
 
 This data is divided into two file:
+
 	train.csv
 	test.csv
 which can be used for training and testing of the model respectively.
@@ -23,6 +24,7 @@ which can be used for training and testing of the model respectively.
 This data can be used to check for the affordability index of the flat which can help us make decisions based on the independent variables. This can be highly beneficially to the consumer in a globally available and regularly updating database and help to predict the trends in the flat systems.
 
 Firstly, the model is trained against train.csv using two ML models:
+
 	• Lasso Model
 	• Random Forest Model
 Both the models were checked for the scores and compared against each other. It shows that the Lasso model performs much worse than the Random Forest Model. Hence, we choose the RF model for the prediction of the test.csv file.
@@ -30,6 +32,7 @@ Both the models were checked for the scores and compared against each other. It 
 Now after the prediction an affordability index is formulated using all the parameters regarding the dataset. This is done by normalizing the data and bringing all the values in the input dataset in the range where each value has an impact on the final index and the result can be calculated based on those values.
 
 Process followed:
+
 • Importing of relevant modules
 • Setting paths for both the training and testing data
 • Storing both datasets in different dataframes
