@@ -2,6 +2,7 @@
 Check for the affordability index of the flat
 
 The csv file has data regarding the flats. The columns are:
+
 	POSTED_BY
 	UNDER_CONSTRUCTION
 	RERA
